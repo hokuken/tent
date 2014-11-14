@@ -6,6 +6,8 @@ class CreateTentThemes < ActiveRecord::Migration
       t.string :repository_url
 
       t.timestamps
+
+      t.index :name, unique: true
     end
   end
 end
