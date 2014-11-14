@@ -1,6 +1,6 @@
-class CreateTentTents < ActiveRecord::Migration
+class CreateTentSites < ActiveRecord::Migration
   def change
-    create_table :tent_tents do |t|
+    create_table :tent_sites do |t|
       t.string :title
       t.text :note
       t.text :description
