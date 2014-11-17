@@ -2,13 +2,31 @@
 <html>
 <head>
   <title>Tent</title>
-  <%= stylesheet_link_tag    "tent/application", media: "all" %>
-  <%= javascript_include_tag "tent/application" %>
+  <%= stylesheet_link_tag 'tent/application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'tent/application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<%= yield %>
-
+  <div id="wrapper">
+    <header class="tent-header">
+      <% if yield(:header).empty? %>
+        <%= render 'header', :base => true %>
+      <% else %>
+        <%= yield :header %>
+      <% end %>
+    </header>
+    <article class="tent-content">
+      <% if notice %><div class="alert alert-success"><%= notice %></div><% end %>
+      <% if alert %><div class="alert alert-danger"><%= alert %></div><% end %>
+      <%= yield %>
+    </article>
+    <footer class="tent-footer">
+      <% if yield(:footer).empty? %>
+        <%= render 'footer' %>
+      <% else %>
+        <%= yield :footer %>
+      <% end %>
+    </footer>
+  </div>
 </body>
 </html>
