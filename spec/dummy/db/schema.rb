@@ -14,14 +14,18 @@
 ActiveRecord::Schema.define(version: 20141114081503) do
 
   create_table "tent_pages", force: true do |t|
-    t.string   "path",                        null: false
+    t.integer  "site_id",                             null: false
+    t.string   "path",                                null: false
     t.string   "title"
     t.text     "description"
     t.text     "keywords"
     t.text     "javascript"
     t.text     "head"
-    t.text     "body",           default: "", null: false
+    t.text     "body",           default: "",         null: false
+    t.string   "parser",         default: "markdown", null: false
     t.string   "template_name"
+    t.integer  "parent_id"
+    t.integer  "nav_page_id"
     t.integer  "menu_page_id"
     t.integer  "footer_page_id"
     t.integer  "published"
@@ -30,15 +34,15 @@ ActiveRecord::Schema.define(version: 20141114081503) do
     t.datetime "updated_at"
   end
 
-  add_index "tent_pages", ["path"], name: "index_tent_pages_on_path", unique: true
+  add_index "tent_pages", ["site_id", "path"], name: "index_tent_pages_on_site_id_and_path", unique: true
 
   create_table "tent_sites", force: true do |t|
     t.string   "path",        null: false
     t.string   "title"
-    t.text     "note"
     t.text     "description"
     t.string   "logo_url"
     t.integer  "theme_id"
+    t.text     "note"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
