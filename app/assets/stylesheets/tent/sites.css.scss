@@ -2,6 +2,29 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 // "bootstrap-sprockets" must be imported before "bootstrap" and "bootstrap/variables"
+@import "_font-awesome-sprockets";
+@import "font-awesome";
 @import "_bootstrap-sprockets";
 @import "_bootstrap";
 
+.hango-sites-container {
+  .hango-sites-add {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    font-size: 40px;
+    color: #cdcdcd;
+    border: 2px solid #cdcdcd;
+    border-radius: 7px;
+    padding: 0;
+    margin: 10px auto;
+    text-align: center;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #cdcdcd;
+      color: #fff;
+    }
+  }
+}
