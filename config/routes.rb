@@ -1,4 +1,5 @@
 Tent::Engine.routes.draw do
+  resources :sites, path: 'tents', only: [:index, :new, :create]
 
   namespace :admin, path: '/:site_name/tent' do
     get '/' => 'tent#dashboard'
