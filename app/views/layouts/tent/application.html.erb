@@ -10,7 +10,7 @@
   <div id="wrapper">
     <header class="tent-header">
       <% if yield(:header).empty? %>
-        <%= render 'header', :base => true %>
+        <%= render 'layouts/tent/header' %>
       <% else %>
         <%= yield :header %>
       <% end %>
@@ -22,7 +22,7 @@
     </article>
     <footer class="tent-footer">
       <% if yield(:footer).empty? %>
-        <%= render 'footer' %>
+        <%= render 'layouts/tent/footer' %>
       <% else %>
         <%= yield :footer %>
       <% end %>
