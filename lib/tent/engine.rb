@@ -2,6 +2,7 @@ require 'font-awesome-sass'
 require "jquery-rails"
 require "bootstrap-sass"
 require "turbolinks"
+require "carrierwave"
 
 module Tent
   class Engine < ::Rails::Engine

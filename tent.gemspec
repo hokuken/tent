@@ -26,4 +26,7 @@ Gem::Specification.new do |s|
   s.add_dependency "turbolinks"
 
   s.add_dependency "autoprefixer-rails"
+
+  s.add_dependency 'carrierwave'
+
 end
