@@ -1,4 +1,4 @@
-require 'font-awesome-rails'
+require 'font-awesome-sass'
 require "jquery-rails"
 require "bootstrap-sass"
 require "turbolinks"
