@@ -1,3 +1,8 @@
+require 'font-awesome-rails'
+require "jquery-rails"
+require "bootstrap-sass"
+require "turbolinks"
+
 module Tent
   class Engine < ::Rails::Engine
     isolate_namespace Tent
@@ -6,5 +11,6 @@ module Tent
       g.test_framework :rspec
       g.fixture_replacement :factory_girl, :dir => 'spec/factories'
     end
+
   end
 end
