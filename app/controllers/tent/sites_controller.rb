@@ -5,10 +5,10 @@ module Tent
 
     def index
       @sites = Site.all
-      @site = Site.new
     end
 
     def new
+      @site = Site.new
     end
 
     def create
@@ -21,7 +21,7 @@ module Tent
         message = {:alert => @site.errors.messages[:base]}
 
         @sites = Site.all
-        render :index
+        render :new
       end
     end
 
