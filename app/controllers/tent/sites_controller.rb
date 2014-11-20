@@ -16,10 +16,11 @@ module Tent
 
       if @site.save
         message = {:notice => 'イベントを追加しました'}
-        redirect_to controller: :pages, action: :show, site_path: @site.path, page_path: ''
+        redirect_to site_page_path(site_path: @site.path, page_path: '')
+#        redirect_to controller: :pages, action: :show, site_path: @site.path, page_path: ''
       else
         message = {:alert => @site.errors.messages[:base]}
-        
+
         @sites = Site.all
         render :index
       end
