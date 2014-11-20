@@ -15,10 +15,10 @@ module Tent
       @site = Site.new(site_params)
 
       if @site.save
-        message = {:notice => 'イベントを追加しました'}
+        flash[:success]  = 'サイトを追加しました'
         redirect_to site_page_path(site_path: @site.path, page_path: '')
       else
-        message = {:alert => @site.errors.messages[:base]}
+        flash[:error] = @site.errors.full_messages
 
         @sites = Site.all
         render :new
