@@ -1,0 +1,32 @@
+<div class="container hango-sites-container">
+  <div class="row">
+    <div class="col-sm-2 text-right">
+      <%= link_to new_site_path, :class => 'hango-sites-add' do %>
+        <i class="fa fa-plus"></i>
+      <% end %>
+    </div>
+    <div class="col-sm-10">
+      <div class="row">
+        <% @sites.each do |site| %>
+
+          <div class="col-sm-4 hango-sites-item">
+            <%= link_to site_page_path(site_path: site.path), class: 'thumbnail item-logo', style: site.logo_url.nil? ? '' : 'background-image:url(' + site.logo_url.url + ');' do %>
+              <div class="caption">
+                <div class="item-title"><%= site.title %></div>
+                <div class="item-url"><%= site_page_url(site_path: site.path) %></div>
+                <div class="item-note">
+                  <%= site.note %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<%= debug @sites if Rails.env.development? %>

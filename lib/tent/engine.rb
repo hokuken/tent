@@ -1,11 +1,14 @@
-require 'font-awesome-rails'
+require 'font-awesome-sass'
 require "jquery-rails"
 require "bootstrap-sass"
 require "turbolinks"
+require "carrierwave"
 
 module Tent
   class Engine < ::Rails::Engine
     isolate_namespace Tent
+
+    config.autoload_paths += Dir["#{config.root}/lib/**/"]
 
     config.generators do |g|
       g.test_framework :rspec

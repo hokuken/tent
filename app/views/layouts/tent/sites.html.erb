@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tent</title>
+  <%= stylesheet_link_tag 'tent/sites', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'tent/sites', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <div id="wrapper">
+    <header class="tent-header">
+      <% if yield(:header).empty? %>
+        <%= render 'layouts/tent/header' %>
+      <% else %>
+        <%= yield :header %>
+      <% end %>
+    </header>
+    <article class="tent-content">
+      <%= render partial: "tent/shared/flash_messages", flash: flash %>
+      <%= yield %>
+    </article>
+    <footer class="tent-footer">
+      <% if yield(:footer).empty? %>
+        <%= render 'layouts/tent/footer' %>
+      <% else %>
+        <%= yield :footer %>
+      <% end %>
+    </footer>
+  </div>
+</body>
+</html>

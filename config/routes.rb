@@ -1,4 +1,5 @@
 Tent::Engine.routes.draw do
+  resources :sites, path: 'tents', only: [:index, :new, :create]
 
   namespace :admin, path: '/:site_name/tent' do
     get '/' => 'tent#dashboard'
@@ -14,6 +15,7 @@ Tent::Engine.routes.draw do
     resources :themes, only: [:index, :show, :destroy]
   end
 
-  get '/:site_name/:page_path', to: 'pages#show',
-      constraints: { site_name: /[^\/]+/, page_path: /.*/ }
+  get '/:site_path(/:page_path)', to: 'pages#show',
+      constraints: { site_name: /[^\/]+/, page_path: /.*/ },
+      as: :site_page
 end
