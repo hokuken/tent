@@ -111,7 +111,10 @@ RSpec.describe Tent::Site, type: :model do
     end
 
     context '予約語を指定した場合' do
-      pending '予約後のリストを読み込み、ランダムで選んでテストする'
+      it 'invalid' do
+        @site.path = 'admin'
+        expect(@site).not_to be_valid
+      end
     end
   end
 
