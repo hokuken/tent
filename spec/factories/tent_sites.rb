@@ -5,4 +5,9 @@ FactoryGirl.define do
     title { Faker::Commerce.product_name }
     path  { Faker::Internet.domain_word }
   end
+
+  factory :tent_site_invalid, :class => 'Tent::Site' do
+    title ''
+    path ''
+  end
 end
