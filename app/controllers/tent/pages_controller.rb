@@ -1,5 +1,6 @@
 require_dependency "tent/application_controller"
 require "html/pipeline"
+require "tent/markdown"
 
 module Tent
   class PagesController < ApplicationController
@@ -25,7 +26,7 @@ tentですね。
     end
 
     private
-    
+
     def convert_body(body)
       pipeline = HTML::Pipeline.new [
         Tent::Markdown::Filters::Redcarpet,
@@ -36,7 +37,7 @@ tentですね。
       result[:output].to_s
 
     end
-    
+
 
 
   end
