@@ -1,5 +1,4 @@
 require_dependency "tent/application_controller"
-require "html/pipeline"
 require "tent/markdown"
 
 module Tent
@@ -28,17 +27,8 @@ tentですね。
     private
 
     def convert_body(body)
-      pipeline = HTML::Pipeline.new [
-        Tent::Markdown::Filters::Redcarpet,
-        Tent::Markdown::Filters::Tent
-      ]
-
-      result = pipeline.call(body)
+      result = Tent::Markdown::Converter.new.call body
       result[:output].to_s
-
     end
-
-
-
   end
 end
