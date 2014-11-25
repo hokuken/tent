@@ -29,4 +29,5 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'carrierwave'
 
+  s.add_dependency 'redcarpet', '~> 3.2.0'
 end
