@@ -1,4 +1,4 @@
-require "redcarpet"
+require 'redcarpet'
 
 module Tent
   module Markdown
