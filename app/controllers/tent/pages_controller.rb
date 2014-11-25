@@ -21,7 +21,7 @@ tent
 
 tentですね。
 '
-      @body = convert_body page.body
+      @body_html = convert_body page.body
 
     end
 
