@@ -10,7 +10,9 @@
         <% @sites.each do |site| %>
 
           <div class="col-sm-4 hango-sites-item">
-            <%= link_to site_page_path(path: site.path), class: 'thumbnail item-logo', style: site.logo_url.nil? ? '' : 'background-image:url(' + site.logo_url.url + ');' do %>
+            <%= link_to site_page_path(path: site.path),
+                        class: 'thumbnail item-logo',
+                        style: site.logo_url ? "background-image:url(#{site.logo_url.url})" : '' do %>
               <div class="caption">
                 <div class="item-title"><%= site.title %></div>
                 <div class="item-url"><%= site_page_url(path: site.path) %></div>
