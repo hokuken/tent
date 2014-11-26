@@ -17,6 +17,8 @@ RSpec.describe Tent::Site, type: :model do
   it { should respond_to(:created_at) }
   it { should respond_to(:updated_at) }
 
+  it { should have_many :pages }
+
   it { should be_valid }
 
   describe '#path' do
