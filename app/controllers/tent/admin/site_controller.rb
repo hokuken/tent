@@ -34,7 +34,7 @@ module Tent
     end
 
     def site_params
-      params.require(:site).permit(:path, :title, :description, :logo_url, :logo_url_cache, :remove_logo_url)
+      params.require(:site).permit(:path, :title, :description, :logo_url, :default, :logo_url_cache, :remove_logo_url)
     end
 
   end
