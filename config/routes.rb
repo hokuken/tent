@@ -1,10 +1,11 @@
 Tent::Engine.routes.draw do
   resources :sites, path: 'tents', only: [:index, :new, :create]
 
-  namespace :admin, path: '/:site_name/tent' do
-    get '/' => 'tent#dashboard'
-    get 'pitch' => 'tent#configure'
-    get 'newpage' => 'pages#new'
+  namespace :admin, path: '/:site_path/tent' do
+    get   '/'       => 'tent#dashboard'
+    get   'pitch'   => 'tent#configure'
+    patch 'pitch'   => 'tent#configure_update'
+    get   'newpage' => 'pages#new'
     resources :pages, param: :page_path,
               only: [:index, :update, :create, :destroy],
               constraints: { page_path: /.+/ } do
