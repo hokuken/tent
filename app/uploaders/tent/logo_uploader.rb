@@ -46,9 +46,11 @@ module Tent
     # Override the filename of the uploaded files:
     # Avoid using model.id or version_name here, see uploader/store.rb for details.
     def filename
-      hasher = OpenSSL::Digest::SHA1.new
-      hash = hasher.hexdigest "#{original_filename}:#{Time.new}"
-      "#{hash}.jpg"
+      if original_filename.present?
+        hasher = OpenSSL::Digest::SHA1.new
+        hash = hasher.hexdigest "#{original_filename}:#{Time.new}"
+        "#{hash}.jpg"
+      end
     end
 
   end
