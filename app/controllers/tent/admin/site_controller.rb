@@ -15,7 +15,7 @@ module Tent
     def configure_update
       if @site.update site_params
          flash[:success] = ['サイト情報の更新をしました']
-         redirect_to admin_pitch_path(site_path: @site.path)
+         redirect_to admin_pitch_path(path: @site.path)
       else
         flash[:error] = @site.errors.full_messages
 

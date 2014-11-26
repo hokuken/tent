@@ -11,7 +11,7 @@ module Tent
 
       describe "GET configure" do
         before do
-          get :configure, site_path: @site.path
+          get :configure, path: @site.path
         end
 
         it "returns http success" do
@@ -36,32 +36,32 @@ module Tent
         context "with valid attributes" do
           it "not create a site" do
             expect{
-              patch :configure_update, site_path: @site.path, site: @params
+              patch :configure_update, path: @site.path, site: @params
             }.to_not change(Site,:count)
           end
 
           it "change site attribute" do
-            patch :configure_update, site_path: @site.path, site: @params
+            patch :configure_update, path: @site.path, site: @params
             @site.reload
             expect(@site.title).to eq(@params[:title])
           end
 
 
           it "redirects to configure path" do
-            patch :configure_update, site_path: @site.path, site: @params
-            expect(response).to redirect_to admin_pitch_path(site_path: @site.path)
+            patch :configure_update, path: @site.path, site: @params
+            expect(response).to redirect_to admin_pitch_path(path: @site.path)
           end
         end
 
         context "with invalid attributes" do
            it "does not save site" do
-            patch :configure_update, site_path: @site.path, site: FactoryGirl.attributes_for(:tent_site_invalid)
+            patch :configure_update, path: @site.path, site: FactoryGirl.attributes_for(:tent_site_invalid)
             @site.reload
             expect(@site.title).not_to eq(@params[:title])
           end
 
           it "re-renders the configure method" do
-            patch :configure_update, site_path: @site.path, site: FactoryGirl.attributes_for(:tent_site_invalid)
+            patch :configure_update, path: @site.path, site: FactoryGirl.attributes_for(:tent_site_invalid)
             expect(response).to render_template :configure
           end
         end
