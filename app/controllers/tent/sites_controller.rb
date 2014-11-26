@@ -16,7 +16,7 @@ module Tent
 
       if @site.save
         flash[:success] = ['サイトを追加しました']
-        redirect_to site_page_path(site_path: @site.path, page_path: '')
+        redirect_to site_page_path(path: @site.path)
       else
         flash[:error] = @site.errors.full_messages
 
