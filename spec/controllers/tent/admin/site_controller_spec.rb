@@ -64,7 +64,29 @@ module Tent
             patch :configure_update, site_path: @site.path, site: FactoryGirl.attributes_for(:tent_site_invalid)
             expect(response).to render_template :configure
           end
+
         end
+
+        context "default が true の時" do
+           it "すでに default:true のサイトが他に存在するなら invalid" do
+            create :tent_site_default
+            @params[:default] = true
+
+            patch :configure_update, site_path: @site.path, site: @params
+            @site.reload
+            expect(@site.default).to be false
+          end
+
+           it "default:true のサイトが他に存在しないなら更新" do
+            @params[:default] = true
+
+            patch :configure_update, site_path: @site.path, site: @params
+            @site.reload
+            expect(@site.default).to be true
+          end
+
+        end
+
       end
     end
 
