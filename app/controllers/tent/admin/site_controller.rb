@@ -1,7 +1,7 @@
 require_dependency "tent/application_controller"
 
 module Tent
-  class Admin::TentController < ApplicationController
+  class Admin::SiteController < ApplicationController
     before_filter :set_site
 
     def dashboard
