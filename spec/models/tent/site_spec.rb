@@ -13,6 +13,7 @@ RSpec.describe Tent::Site, type: :model do
   it { should respond_to(:description) }
   it { should respond_to(:logo_url) }
   it { should respond_to(:note) }
+  it { should respond_to(:default) }
   it { should respond_to(:created_at) }
   it { should respond_to(:updated_at) }
 
@@ -123,6 +124,85 @@ RSpec.describe Tent::Site, type: :model do
       it 'invalid' do
         @site.title = ''
         expect(@site).not_to be_valid
+      end
+    end
+  end
+
+  describe '#default' do
+    context 'デフォルトサイトがない場合' do
+      it 'valid' do
+        @site.default = true
+        expect(@site).to be_valid
+      end
+
+      it 'サイト全体で count が 0' do
+        expect(Site.where(default: true).count).to eq 0
+      end
+    end
+
+    context 'デフォルトサイトが別にある場合' do
+      before do
+        other_site = create :tent_site
+        other_site.update default: true
+      end
+
+      it 'invalid' do
+        @site.default = true
+        expect(@site).not_to be_valid
+      end
+
+      it 'サイト全体で count が 1' do
+        expect(Site.where(default: true).count).to eq 1
+      end
+    end
+  end
+
+  describe '#default!' do
+    context 'デフォルトサイトがない場合' do
+      it '自分の #default が true になる' do
+
+      end
+
+      it 'サイト全体で count が 1' do
+
+      end
+    end
+
+    context 'デフォルトサイトが別のサイトの場合' do
+      it '自分の #default が true になる' do
+
+      end
+
+      it 'サイト全体で count が 1' do
+
+      end
+
+      it '元々のデフォルトサイト#default が false になる' do
+
+      end
+    end
+
+    context 'デフォルトサイトが自分の場合' do
+      it '自分の #default が true のまま' do
+
+      end
+
+      it 'サイト全体で count が 1' do
+
+      end
+    end
+  end
+
+  describe '::default' do
+    context 'デフォルトサイトがない場合' do
+      it 'nil を返す' do
+        expect(Site.default).to be_nil
+      end
+    end
+
+    context 'デフォルトサイトがある場合' do
+      it 'site を返す' do
+        expect(Site.default).to be_persisted
       end
     end
   end
