@@ -43,7 +43,7 @@ module Tent
         default_site = default_site.where.not(id: id)
       end
       if default_site.exists?
-        errors.add(:default, 'cannot have another default site')
+        errors.add(:default, I18n.t('errors.models.tent/site.attributes.default.only'))
       end
 
 
