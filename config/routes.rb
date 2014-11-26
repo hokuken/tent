@@ -16,7 +16,7 @@ Tent::Engine.routes.draw do
     resources :themes, only: [:index, :show, :destroy]
   end
 
-  get '/:site_path(/:page_path)', to: 'pages#show',
-      constraints: { site_name: /[^\/]+/, page_path: /.*/ },
+  get '/(:path)', to: 'pages#show',
+      constraints: { path: /.*/ },
       as: :site_page
 end
