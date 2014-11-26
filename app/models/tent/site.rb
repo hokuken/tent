@@ -1,3 +1,5 @@
+require 'tent/reserved_words'
+
 module Tent
   class Site < ActiveRecord::Base
     mount_uploader :logo_url, LogoUploader
@@ -5,7 +7,7 @@ module Tent
     validates :title, :path, presence: true
     validates :path, length: { maximum: 50 }
     validates :path, format: { with: /\A(?:\p{Hiragana}|\p{Katakana}|[ー－]|[一-龠々]|[a-z0-9_-])+\z/ }
-    validates :path, exclusion: { in: Tent::Site::RESERVED_PATHS }
+    validates :path, exclusion: { in: Tent::ReservedWords::SITE_PATHS }
 
     before_validation :replace_control_characters
 
