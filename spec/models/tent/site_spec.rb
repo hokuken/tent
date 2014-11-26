@@ -136,7 +136,7 @@ RSpec.describe Tent::Site, type: :model do
       end
 
       it 'サイト全体で count が 0' do
-        expect(Site.where(default: true).count).to eq 0
+        expect(Tent::Site.where(default: true).count).to eq 0
       end
     end
 
@@ -152,7 +152,7 @@ RSpec.describe Tent::Site, type: :model do
       end
 
       it 'サイト全体で count が 1' do
-        expect(Site.where(default: true).count).to eq 1
+        expect(Tent::Site.where(default: true).count).to eq 1
       end
     end
   end
@@ -193,16 +193,21 @@ RSpec.describe Tent::Site, type: :model do
     end
   end
 
-  describe '::default' do
+  describe 'scope :default' do
     context 'デフォルトサイトがない場合' do
-      it 'nil を返す' do
-        expect(Site.default).to be_nil
+      it 'count = 0' do
+        expect(Tent::Site.default.count).to eq 0
       end
     end
 
     context 'デフォルトサイトがある場合' do
+      before { create :tent_site_default }
+
+      it 'count = 1' do
+        expect(Tent::Site.default.count).to eq 1
+      end
       it 'site を返す' do
-        expect(Site.default).to be_persisted
+        expect(Tent::Site.default.first).to be_persisted
       end
     end
   end
