@@ -26,8 +26,11 @@ module Tent
     private
 
     def set_site
-      site_path = params.fetch :site_path
-      @site = Site.where(path: site_path).first
+      path = params.fetch :site_path, ''
+      @site = Site.where(path: path).first
+      unless @site
+        raise "#{path} not found"
+      end
     end
 
     def site_params
