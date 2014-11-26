@@ -13,6 +13,7 @@ module Tent
     before_validation :replace_control_characters
 
     before_validation do
+      path = '' unless path
       path.downcase!
       path.strip!
     end
@@ -30,6 +31,7 @@ module Tent
     end
 
     def replace_control_characters
+      return unless path
       path.gsub! /[[:cntrl:]]/, " "
     end
 
