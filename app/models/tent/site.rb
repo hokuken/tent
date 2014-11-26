@@ -19,6 +19,8 @@ module Tent
 
     after_create :insert_index_page
 
+    has_many :pages, class_name: 'Tent::Page'
+
     scope :default, -> { where(default: true) }
 
     private
