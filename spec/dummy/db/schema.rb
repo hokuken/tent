@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141114081503) do
+ActiveRecord::Schema.define(version: 20141126044557) do
 
   create_table "tent_pages", force: true do |t|
     t.integer  "site_id",                             null: false
@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(version: 20141114081503) do
   add_index "tent_pages", ["site_id", "path"], name: "index_tent_pages_on_site_id_and_path", unique: true
 
   create_table "tent_sites", force: true do |t|
-    t.string   "path",        null: false
+    t.string   "path",                        null: false
     t.string   "title"
     t.text     "description"
     t.string   "logo_url"
@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 20141114081503) do
     t.text     "note"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "default",     default: false, null: false
   end
 
   add_index "tent_sites", ["path"], name: "index_tent_sites_on_path", unique: true

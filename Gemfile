@@ -17,6 +17,7 @@ gem 'sqlite3'
 
 gem 'rspec'
 gem 'rspec-rails'
+gem 'shoulda-matchers'
 gem 'factory_girl_rails'
 gem 'faker'
 gem 'database_cleaner'

@@ -6,6 +6,7 @@ require 'spec_helper'
 #require File.expand_path("../../config/environment", __FILE__)
 require File.expand_path("../dummy/config/environment", __FILE__)
 require 'rspec/rails'
+require 'shoulda/matchers'
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
@@ -26,6 +27,8 @@ require 'rspec/rails'
 # Require factories
 FactoryGirl.definition_file_paths << File.join(File.dirname(__FILE__), 'factories')
 FactoryGirl.find_definitions
+
+Faker::Config.locale = :en
 
 # Checks for pending migrations before tests are run.
 # If you are not using ActiveRecord, you can remove this line.

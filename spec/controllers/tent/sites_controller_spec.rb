@@ -53,7 +53,7 @@ module Tent
         it "redirects to the new group" do
           a = post :create, site: FactoryGirl.attributes_for(:tent_site)
           new_site = Site.unscoped.last
-          expect(response).to redirect_to site_page_path(site_path: new_site.path)
+          expect(response).to redirect_to site_page_path(path: new_site.path)
         end
       end
  

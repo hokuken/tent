@@ -16,8 +16,7 @@
       <% end %>
     </header>
     <article class="tent-content">
-      <% if notice %><div class="alert alert-success"><%= notice %></div><% end %>
-      <% if alert %><div class="alert alert-danger"><%= alert %></div><% end %>
+      <%= render partial: "tent/shared/flash_messages", flash: flash %>
       <%= yield %>
     </article>
     <footer class="tent-footer">
