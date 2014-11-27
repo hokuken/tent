@@ -13,9 +13,8 @@ module Tent
     before_validation :replace_control_characters
 
     before_validation do
-      path = '' unless path
-      path.downcase!
-      path.strip!
+      path.try(:downcase!)
+      path.try(:strip!)
     end
 
     after_create :insert_index_page
@@ -31,8 +30,7 @@ module Tent
     end
 
     def replace_control_characters
-      return unless path
-      path.gsub! /[[:cntrl:]]/, " "
+      path.try(:gsub!, /[[:cntrl:]]/, " ")
     end
 
     def only_one_default
