@@ -18,15 +18,25 @@ module Tent
         @page = Site.default.first.pages.where(path: path).first
         if @page
           @site = @page.site
+          page_path = @page.path
+          site_path = ''
         else
           raise "/#{path} not found"
         end
       else
-        if page_path.size == 0
-          page_path = "index"
-        end
+        @page = Page.where(site_id: @site.id, path: page_path.size == 0 ? 'index' : page_path).first
+      end
 
-        @page = Page.where(site_id: @site.id, path: page_path).first
+      if @site.default?
+        unless path.size == 0 || site_path.size == 0
+          redirect_to site_page_path(path: page_path)
+          return
+        end
+      end
+      
+      if page_path == 'index'
+        redirect_to site_page_path(path: @site.default? ? '' : @site.path)
+        return
       end
 
       unless @page
