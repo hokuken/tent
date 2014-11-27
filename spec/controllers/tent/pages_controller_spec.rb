@@ -48,6 +48,12 @@ module Tent
         it 'ページがセットされている' do
           expect(assigns[:page]).to eq page
         end
+        
+        it 'ページ名が index ならば サイトのルートにリダイレクトする' do
+          get :show, path: site.path + '/index'
+          expect(response).to redirect_to site_page_path(path: site.path)
+        end
+
       end
 
       context "デフォルトサイトへの訪問をする時" do
@@ -91,8 +97,36 @@ module Tent
             expect(assigns[:page]).to eq page
           end
         end
-
+        
+        context 'indexページにアクセスする場合' do
+          it 'サイトのルートにリダイレクトする' do
+            get :show, path: 'index'
+            expect(response).to redirect_to site_page_path(path: '')
+          end
+        end
+        
       end
+
+      context "デフォルトサイトにデフォルトサイトのパスでアクセスした時" do
+        before do
+          create :tent_site_default
+          @site = Site.default.first
+        end
+
+        it "/にリダイレクトする" do
+          get :show, path: @site.path
+          expect(response).to redirect_to site_page_path
+        end
+        
+        it "ページ名がパスに含まれていたら、/ページ名にリダイレクトする" do
+          page = create :tent_page, site_id: @site.id
+          page_path = page.path
+          get :show, path: @site.path + '/' + page_path
+          expect(response).to redirect_to site_page_path(page_path)
+        end
+        
+      end
+      
     end
 
   end
