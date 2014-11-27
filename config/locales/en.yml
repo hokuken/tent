@@ -1,0 +1,6 @@
+en:
+  models:
+    tent/site:
+      attributes:
+        default:
+          only: is already exist.

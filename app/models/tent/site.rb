@@ -13,6 +13,7 @@ module Tent
     before_validation :replace_control_characters
 
     before_validation do
+      path = '' unless path
       path.downcase!
       path.strip!
     end
@@ -30,6 +31,7 @@ module Tent
     end
 
     def replace_control_characters
+      return unless path
       path.gsub! /[[:cntrl:]]/, " "
     end
 
@@ -41,7 +43,7 @@ module Tent
         default_site = default_site.where.not(id: id)
       end
       if default_site.exists?
-        errors.add(:default, 'cannot have another default site')
+        errors.add(:default, I18n.t('errors.models.tent/site.attributes.default.only'))
       end
 
 
